@@ -1,0 +1,707 @@
+openapi: 3.0.0
+info:
+  title: campaign
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/task/precampaign/{id}':
+    parameters:
+      - schema:
+          type: number
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get User Info by User ID
+      tags: []
+      responses:
+        '200':
+          description: User Found
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  taskName:
+                    type: string
+                    minLength: 1
+                  campaignName:
+                    type: string
+                    minLength: 1
+                  clientName:
+                    type: string
+                    minLength: 1
+                  publisher:
+                    type: string
+                    minLength: 1
+                  device:
+                    type: string
+                    minLength: 1
+                  sov:
+                    type: object
+                    properties:
+                      publisher:
+                        type: array
+                        items:
+                          required: []
+                          properties: {}
+                      percent:
+                        type: number
+                      market:
+                        type: string
+                        minLength: 1
+                    required:
+                      - publisher
+                      - percent
+                      - market
+                  created:
+                    type: string
+                    minLength: 1
+                  creator:
+                    type: string
+                    minLength: 1
+                  brand:
+                    type: string
+                    minLength: 1
+                  frequency:
+                    type: number
+                  audience:
+                    type: number
+                  ageBegin:
+                    type: number
+                  ageEnd:
+                    type: number
+                  updated:
+                    type: string
+                    minLength: 1
+                  status:
+                    type: number
+                required:
+                  - id
+                  - taskName
+                  - campaignName
+                  - clientName
+                  - publisher
+                  - device
+                  - sov
+                  - created
+                  - creator
+                  - brand
+                  - frequency
+                  - audience
+                  - ageBegin
+                  - ageEnd
+                  - updated
+                  - status
+              examples:
+                Get User Alice Smith:
+                  value:
+                    id: 142
+                    firstName: Alice
+                    lastName: Smith
+                    email: alice.smith@gmail.com
+                    dateOfBirth: '1997-10-31'
+                    emailVerified: true
+                    signUpDate: '2019-08-24'
+        '404':
+          description: User Not Found
+        '':
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  taskName:
+                    type: string
+                    minLength: 1
+                  campaignName:
+                    type: string
+                    minLength: 1
+                  clientName:
+                    type: string
+                    minLength: 1
+                  publisher:
+                    type: string
+                    minLength: 1
+                  device:
+                    type: string
+                    minLength: 1
+                  sov:
+                    type: object
+                    required:
+                      - publisher
+                      - percent
+                      - market
+                    properties:
+                      publisher:
+                        type: array
+                        items:
+                          type: string
+                      percent:
+                        type: number
+                      market:
+                        type: string
+                        minLength: 1
+                  created:
+                    type: string
+                    minLength: 1
+                  creator:
+                    type: string
+                    minLength: 1
+                  brand:
+                    type: string
+                    minLength: 1
+                  frequency:
+                    type: number
+                  audience:
+                    type: number
+                  ageBegin:
+                    type: number
+                  ageEnd:
+                    type: number
+                  updated:
+                    type: string
+                    minLength: 1
+                  status:
+                    type: number
+                required:
+                  - id
+                  - taskName
+                  - campaignName
+                  - clientName
+                  - publisher
+                  - device
+                  - sov
+                  - created
+                  - creator
+                  - brand
+                  - frequency
+                  - audience
+                  - ageBegin
+                  - ageEnd
+                  - updated
+                  - status
+              examples:
+                campaign entry:
+                  value:
+                    id: 5
+                    taskName: string4
+                    campaignName: string
+                    clientName: string
+                    publisher: 'iqiyi,Youtu'
+                    device: 'PC,MOB'
+                    sov:
+                      publisher:
+                        - iqiyi
+                      percent: 80
+                      market: National
+                    created: '2020-07-30T02:13:53.852699Z'
+                    creator: admin
+                    brand: string
+                    frequency: 1
+                    audience: 1
+                    ageBegin: 18
+                    ageEnd: 20
+                    updated: '2020-07-30T02:13:53.852728Z'
+                    status: 1
+      operationId: get-users-userId
+      description: Retrieve the information of the user with the matching user ID.
+    patch:
+      summary: Update User Information
+      operationId: patch-users-userId
+      responses:
+        '200':
+          description: Campaign Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/campaign'
+              examples: {}
+        '404':
+          description: User Not Found
+        '409':
+          description: Email Already Taken
+      description: Update the infromation of an existing campaign.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                id:
+                  type: number
+                taskName:
+                  type: string
+                  minLength: 1
+                campaignName:
+                  type: string
+                  minLength: 1
+                clientName:
+                  type: string
+                  minLength: 1
+                publisher:
+                  type: string
+                  minLength: 1
+                device:
+                  type: string
+                  minLength: 1
+                sov:
+                  type: object
+                  required:
+                    - publisher
+                    - percent
+                    - market
+                  properties:
+                    publisher:
+                      type: array
+                      items:
+                        type: string
+                    percent:
+                      type: number
+                    market:
+                      type: string
+                      minLength: 1
+                created:
+                  type: string
+                  minLength: 1
+                creator:
+                  type: string
+                  minLength: 1
+                brand:
+                  type: string
+                  minLength: 1
+                frequency:
+                  type: number
+                audience:
+                  type: number
+                ageBegin:
+                  type: number
+                ageEnd:
+                  type: number
+                updated:
+                  type: string
+                  minLength: 1
+                status:
+                  type: number
+              required:
+                - id
+                - taskName
+                - campaignName
+                - clientName
+                - publisher
+                - device
+                - sov
+                - created
+                - creator
+                - brand
+                - frequency
+                - audience
+                - ageBegin
+                - ageEnd
+                - updated
+                - status
+            examples:
+              update status:
+                value:
+                  status: 1
+        description: Patch user properties to update.
+  /task/precampaign:
+    post:
+      summary: Create New User
+      operationId: post-user
+      responses:
+        '201':
+          description: Campaign Created
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  taskName:
+                    type: string
+                    minLength: 1
+                  campaignName:
+                    type: string
+                    minLength: 1
+                  clientName:
+                    type: string
+                    minLength: 1
+                  publisher:
+                    type: string
+                    minLength: 1
+                  device:
+                    type: string
+                    minLength: 1
+                  sov:
+                    type: object
+                    required:
+                      - publisher
+                      - percent
+                      - market
+                    properties:
+                      publisher:
+                        type: array
+                        items:
+                          type: string
+                      percent:
+                        type: number
+                      market:
+                        type: string
+                        minLength: 1
+                  brand:
+                    type: string
+                    minLength: 1
+                  frequency:
+                    type: number
+                  audience:
+                    type: number
+                  ageBegin:
+                    type: number
+                  ageEnd:
+                    type: number
+                required:
+                  - id
+                  - taskName
+                  - campaignName
+                  - clientName
+                  - publisher
+                  - device
+                  - sov
+                  - brand
+                  - frequency
+                  - audience
+                  - ageBegin
+                  - ageEnd
+              examples:
+                example-1:
+                  value:
+                    id: 0
+                    taskName: string
+                    campaignName: string
+                    clientName: string
+                    publisher: string
+                    device: string
+                    sov:
+                      publisher:
+                        - string
+                      percent: 0
+                      market: string
+                    brand: string
+                    frequency: 0
+                    audience: 0
+                    ageBegin: 0
+                    ageEnd: 0
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+        '422':
+          description: Missing Required Information
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                  fields:
+                    type: object
+                    properties:
+                      taskName:
+                        type: array
+                        uniqueItems: true
+                        minItems: 1
+                        items:
+                          required:
+                            - code
+                            - message
+                          properties:
+                            code:
+                              type: string
+                              minLength: 1
+                            message:
+                              type: string
+                              minLength: 1
+                    required:
+                      - taskName
+                required:
+                  - message
+                  - fields
+              examples:
+                error message:
+                  value:
+                    message: 字段校验失败
+                    fields:
+                      taskName:
+                        - code: invalid
+                          message: 已存在同名任务，请使用其他名称
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                taskName:
+                  type: string
+                  minLength: 1
+                campaignName:
+                  type: string
+                  minLength: 1
+                clientName:
+                  type: string
+                  minLength: 1
+                publisher:
+                  type: string
+                  minLength: 1
+                device:
+                  type: string
+                  minLength: 1
+                sov:
+                  type: object
+                  required:
+                    - publisher
+                    - percent
+                    - market
+                  properties:
+                    publisher:
+                      type: array
+                      items:
+                        type: string
+                    percent:
+                      type: number
+                    market:
+                      type: string
+                      minLength: 1
+                brand:
+                  type: string
+                  minLength: 1
+                frequency:
+                  type: number
+                audience:
+                  type: number
+                ageBegin:
+                  type: number
+                ageEnd:
+                  type: number
+              required:
+                - taskName
+                - campaignName
+                - clientName
+                - publisher
+                - device
+                - sov
+                - brand
+                - frequency
+                - audience
+                - ageBegin
+                - ageEnd
+            examples: {}
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: Post the necessary fields for the API to create a new user.
+      description: Create a new user.
+    parameters: []
+    get:
+      summary: ''
+      operationId: get-task-precampaign
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  page:
+                    type: object
+                    properties:
+                      current:
+                        type: number
+                      size:
+                        type: number
+                      total:
+                        type: number
+                    required:
+                      - current
+                      - size
+                      - total
+                  records:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - taskName
+                        - campaignName
+                        - clientName
+                        - publisher
+                        - device
+                        - sov
+                        - created
+                        - creator
+                        - brand
+                        - frequency
+                        - audience
+                        - ageBegin
+                        - ageEnd
+                        - updated
+                        - status
+                        - flightTask
+                      properties:
+                        id:
+                          type: number
+                        taskName:
+                          type: string
+                          minLength: 1
+                        campaignName:
+                          type: string
+                          minLength: 1
+                        clientName:
+                          type: string
+                          minLength: 1
+                        publisher:
+                          type: string
+                          minLength: 1
+                        device:
+                          type: string
+                          minLength: 1
+                        sov:
+                          type: string
+                          minLength: 1
+                        created:
+                          type: string
+                          minLength: 1
+                        creator:
+                          type: string
+                          minLength: 1
+                        brand:
+                          type: string
+                          minLength: 1
+                        frequency:
+                          type: number
+                        audience:
+                          type: number
+                        ageBegin:
+                          type: number
+                        ageEnd:
+                          type: number
+                        updated:
+                          type: string
+                          minLength: 1
+                        status:
+                          type: number
+                        flightTask:
+                          type: number
+                required:
+                  - page
+                  - records
+              examples:
+                get campaign:
+                  value:
+                    page:
+                      current: 0
+                      size: 0
+                      total: 0
+                    records:
+                      - id: 0
+                        taskName: string
+                        campaignName: string
+                        clientName: string
+                        publisher: string
+                        device: string
+                        sov: string
+                        created: string
+                        creator: string
+                        brand: string
+                        frequency: 0
+                        audience: 0
+                        ageBegin: 0
+                        ageEnd: 0
+                        updated: string
+                        status: 0
+                        flightTask: 0
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+components:
+  schemas:
+    campaign:
+      description: ''
+      type: object
+      properties:
+        taskName:
+          type: string
+          minLength: 1
+        campaignName:
+          type: string
+          minLength: 1
+        clientName:
+          type: string
+          minLength: 1
+        publisher:
+          type: string
+          minLength: 1
+        device:
+          type: string
+          minLength: 1
+        sov:
+          type: object
+          required:
+            - publisher
+            - percent
+            - market
+          properties:
+            publisher:
+              type: array
+              items:
+                type: string
+            percent:
+              type: number
+            market:
+              type: string
+              minLength: 1
+        brand:
+          type: string
+          minLength: 1
+        frequency:
+          type: number
+        audience:
+          type: number
+        ageBegin:
+          type: number
+        ageEnd:
+          type: number
+      required:
+        - taskName
+        - campaignName
+        - clientName
+        - publisher
+        - device
+        - sov
+        - brand
+        - frequency
+        - audience
+        - ageBegin
+        - ageEnd
+      title: campaign
