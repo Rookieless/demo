@@ -43,21 +43,20 @@ paths:
                     minLength: 1
                   sov:
                     type: object
+                    required:
+                      - publisher
+                      - percent
+                      - market
                     properties:
                       publisher:
                         type: array
                         items:
-                          required: []
-                          properties: {}
+                          type: object
                       percent:
                         type: number
                       market:
                         type: string
                         minLength: 1
-                    required:
-                      - publisher
-                      - percent
-                      - market
                   created:
                     type: string
                     minLength: 1
@@ -531,6 +530,10 @@ paths:
                 properties:
                   page:
                     type: object
+                    required:
+                      - current
+                      - size
+                      - total
                     properties:
                       current:
                         type: number
@@ -538,33 +541,12 @@ paths:
                         type: number
                       total:
                         type: number
-                    required:
-                      - current
-                      - size
-                      - total
                   records:
                     type: array
                     uniqueItems: true
                     minItems: 1
                     items:
-                      required:
-                        - id
-                        - taskName
-                        - campaignName
-                        - clientName
-                        - publisher
-                        - device
-                        - sov
-                        - created
-                        - creator
-                        - brand
-                        - frequency
-                        - audience
-                        - ageBegin
-                        - ageEnd
-                        - updated
-                        - status
-                        - flightTask
+                      type: object
                       properties:
                         id:
                           type: number
@@ -610,6 +592,23 @@ paths:
                           type: number
                         flightTask:
                           type: number
+                      required:
+                        - taskName
+                        - campaignName
+                        - clientName
+                        - publisher
+                        - device
+                        - sov
+                        - created
+                        - creator
+                        - brand
+                        - frequency
+                        - audience
+                        - ageBegin
+                        - ageEnd
+                        - updated
+                        - status
+                        - flightTask
                 required:
                   - page
                   - records
