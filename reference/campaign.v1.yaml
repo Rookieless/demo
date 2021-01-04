@@ -152,13 +152,6 @@ paths:
     get:
       summary: ''
       operationId: get-task-precampaign
-      requestBody:
-        content:
-          application/xml:
-            schema:
-              type: object
-              properties: {}
-        description: ''
       parameters:
         - schema:
             type: integer
@@ -197,7 +190,7 @@ paths:
                   page:
                     $ref: '#/components/schemas/Page'
               examples:
-                example-2:
+                example-1:
                   value:
                     record:
                       - id: 0
@@ -217,12 +210,12 @@ components:
       description: ''
       type: object
       x-examples:
-        example-2:
+        example-1:
           id: 0
           name: string
           status: 0
-          create: '2020-12-31'
-          update: '2020-12-31'
+          create: '2019-08-24T14:15:22Z'
+          update: '2019-08-24T14:15:22Z'
       properties:
         id:
           type: number
@@ -257,6 +250,11 @@ components:
         - current
         - size
         - total
+      x-examples:
+        example-1:
+          current: 0
+          size: 0
+          total: 0
   responses:
     200_ok:
       description: Example response
@@ -271,16 +269,9 @@ components:
                 items:
                   type: object
               page:
-                type: object
-                properties:
-                  current:
-                    type: integer
-                  size:
-                    type: integer
-                  total:
-                    type: integer
+                $ref: '#/components/schemas/Page'
           examples:
-            example-1:
+            example-2:
               value:
                 record:
                   - {}
